@@ -67,6 +67,6 @@ class Payment
             ]
         ]);
         
-        return \GuzzleHttp\json_decode($responseJson);                
+        return \GuzzleHttp\json_decode($responseJson->getBody());                
     }
 }
