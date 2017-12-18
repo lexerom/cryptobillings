@@ -43,26 +43,28 @@ class Payment
     /**
      * This method returns redirect url (on success) where user must be redirected to proceed with payment.
      * 
-     * @param float $amountUsd
-     * @param string $description
-     * @param string $successUrl
-     * @param string $cancelUrl
-     * @param string $notifyUrl
-     * @param string $param1
-     * @param string $param2
+     * @param float $amountUsd This amount will be converted to dopecoins
+     * @param string $description Shows this on a payment screen
+     * @param string $successUrl Returns to this url when order is fully paid
+     * @param string $cancelUrl Returns to this url when user clicks cancel
+     * @param string $notifyUrl Called on any status change
+     * @param string $param1 Returned with success, cancel and notify_url
+     * @param string $param2 Returned with success, cancel and notify_url
      * @return mixed
      */
     public function createOrder($amountUsd, $description, $successUrl, $cancelUrl, $notifyUrl, $param1 = null, $param2 = null)            
     {
         $responseJson = $this->httpClient->post(self::BASE_API_URI . '/' . $this->apiVersion . '/' . self::ORDER_CREATE_PATH, [
-            'api_key' => $this->apiKey,
-            'amount_usd' => $amountUsd,
-            'description' => $description,
-            'success_url' => $successUrl,
-            'cancel_url' => $cancelUrl,
-            'notify_url' => $notifyUrl,
-            'p1' => $param1,
-            'p2' => $param2
+            'query' => [
+                'api_key' => $this->apiKey,
+                'amount_usd' => $amountUsd,
+                'description' => $description,
+                'success_url' => $successUrl,
+                'cancel_url' => $cancelUrl,
+                'notify_url' => $notifyUrl,
+                'p1' => $param1,
+                'p2' => $param2
+            ]
         ]);
         
         return \GuzzleHttp\json_decode($responseJson);                
