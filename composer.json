@@ -1,4 +1,18 @@
 {
+    "name": "lexerom/dopecoin-pay",
+    "description": "PHP wrapper for the Dopecoin Payment Gateway.",
+    "type": "library",
+    "keywords": ["dopecoin", "api", "payment"],
+    "homepage": "https://github.com/lexerom/dopecoin-pay",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alexey Sukhikh",
+            "email": "lexerom@gmail.com",
+            "homepage": "https://github.com/lexerom",
+            "role": "Development"
+        }
+],
     "require": {
         "guzzlehttp/guzzle": "^6.3"
     }
