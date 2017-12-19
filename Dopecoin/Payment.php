@@ -55,7 +55,7 @@ class Payment
     public function createOrder($amountUsd, $description, $successUrl, $cancelUrl, $notifyUrl, $param1 = null, $param2 = null)            
     {
         $responseJson = $this->httpClient->post(self::BASE_API_URI . '/' . $this->apiVersion . '/' . self::ORDER_CREATE_PATH, [
-            'query' => [
+            'form_params' => [
                 'api_key' => $this->apiKey,
                 'amount_usd' => $amountUsd,
                 'description' => $description,
