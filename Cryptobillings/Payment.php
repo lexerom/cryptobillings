@@ -1,5 +1,5 @@
 <?php
-namespace Dopecoin;
+namespace Cryptobillings;
 
 use GuzzleHttp\Client as HttpClient;
 
