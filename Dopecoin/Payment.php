@@ -5,7 +5,7 @@ use GuzzleHttp\Client as HttpClient;
 
 class Payment
 {
-    const BASE_API_URI = 'http://payment.dopecoin.com/api';
+    const BASE_API_URI = 'https://gateway.cryptobillings.com/api';
     const ORDER_CREATE_PATH = 'order/create';
     
     const API_VERSION_1 = 'v1';
@@ -13,6 +13,12 @@ class Payment
     const RESPONSE_STATUS_OK = 200;
     const RESPONSE_STATUS_ERROR = 500;
     const RESPONSE_STATUS_DENIED = 403;
+    
+    const PAYMENT_STATUS_NEW = 0;
+    const PAYMENT_STATUS_PENDING = 1;
+    const PAYMENT_STATUS_SUCCESS = 2;
+    const PAYMENT_STATUS_EXPIRE = 3;
+    const PAYMENT_STATUS_CANCEL = 4;
     
     protected $apiVersion = 'v1';
 
@@ -50,9 +56,10 @@ class Payment
      * @param string $notifyUrl Called on any status change
      * @param string $param1 Returned with success, cancel and notify_url
      * @param string $param2 Returned with success, cancel and notify_url
+     * @param array Array of items to show on payment page
      * @return mixed
      */
-    public function createOrder($amountUsd, $description, $successUrl, $cancelUrl, $notifyUrl, $param1 = null, $param2 = null)            
+    public function createOrder($amountUsd, $description, $successUrl, $cancelUrl, $notifyUrl, $param1 = null, $param2 = null, $productItems = [])            
     {
         $responseJson = $this->httpClient->post(self::BASE_API_URI . '/' . $this->apiVersion . '/' . self::ORDER_CREATE_PATH, [
             'form_params' => [
@@ -63,7 +70,8 @@ class Payment
                 'cancel_url' => $cancelUrl,
                 'notify_url' => $notifyUrl,
                 'p1' => $param1,
-                'p2' => $param2
+                'p2' => $param2,
+                'items' => $productItems
             ]
         ]);
         
