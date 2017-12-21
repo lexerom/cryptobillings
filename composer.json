@@ -1,9 +1,9 @@
 {
-    "name": "lexerom/dopecoin-pay",
-    "description": "PHP wrapper for the Dopecoin Payment Gateway.",
+    "name": "lexerom/cryptobillings",
+    "description": "PHP wrapper for the Cryptobillings Payment Gateway.",
     "type": "library",
-    "keywords": ["dopecoin", "api", "payment"],
-    "homepage": "https://github.com/lexerom/dopecoin-pay",
+    "keywords": ["dopecoin", "api", "payment", "cryptocurrency"],
+    "homepage": "https://github.com/lexerom/cryptobillings",
     "license": "MIT",
     "authors": [
         {
