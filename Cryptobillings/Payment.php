@@ -36,7 +36,7 @@ class Payment
     
     /**
      * 
-     * @param string $apiKey Api key provided by payment.dopecoin.com
+     * @param string $apiKey Api key provided by cryptobillings.com
      */
     public function __construct($apiKey, $apiVersion = self::API_VERSION_1)
     {
@@ -56,24 +56,63 @@ class Payment
      * @param string $notifyUrl Called on any status change
      * @param string $param1 Returned with success, cancel and notify_url
      * @param string $param2 Returned with success, cancel and notify_url
-     * @param array Array of items to show on payment page
+     * @param array Array of Item to show on payment page 
      * @return mixed
      */
-    public function createOrder($amountUsd, $description, $successUrl, $cancelUrl, $notifyUrl, $param1 = null, $param2 = null, $productItems = [])            
+    public function createOrder($currency, $amount, $toCryptoCurrency, $description, $successUrl, $cancelUrl, $notifyUrl, $param1 = null, $param2 = null, array $items = [], AddressInfo $shipping = null, AddressInfo $billing = null)            
     {
-        $responseJson = $this->httpClient->post(self::BASE_API_URI . '/' . $this->apiVersion . '/' . self::ORDER_CREATE_PATH, [
-            'form_params' => [
-                'api_key' => $this->apiKey,
-                'amount_usd' => $amountUsd,
-                'description' => $description,
-                'success_url' => $successUrl,
-                'cancel_url' => $cancelUrl,
-                'notify_url' => $notifyUrl,
-                'p1' => $param1,
-                'p2' => $param2,
-                'items' => $productItems
-            ]
-        ]);
+        $formParams = [
+            'api_key' => $this->apiKey,
+            'amount' => $amount,
+            'currency' => $currency,
+            'to_cryptocurrency' => $toCryptoCurrency,
+            'description' => $description,
+            'success_url' => $successUrl,
+            'cancel_url' => $cancelUrl,
+            'notify_url' => $notifyUrl,
+            'p1' => $param1,
+            'p2' => $param2,
+            'items' => [],
+            'shipping' => [],
+            'billing' => []
+        ];
+        
+        if ($items) {
+            foreach($items as $item) {
+                $formParams['items'][] = [
+                    'description' => $item->description,
+                    'price' => $item->price,
+                    'currency' => $item->currency,
+                    'quanity' => $item->quantity
+                ];
+            }
+        }
+        
+        if ($shipping) {
+            $formParams['shipping'] = [
+                'name' => $shipping->name,
+                'line1' => $shipping->line1,
+                'line2' => $shipping->line2,
+                'country_code' => $shipping->countryCode,
+                'postal_code' => $shipping->postalCode,
+                'state' => $shipping->state,
+                'phone' => $shipping->phone
+            ];
+        }
+        
+        if ($billing) {
+            $formParams['billing'] = [
+                'name' => $billing->name,
+                'line1' => $billing->line1,
+                'line2' => $billing->line2,
+                'country_code' => $billing->countryCode,
+                'postal_code' => $billing->postalCode,
+                'state' => $billing->state,
+                'phone' => $billing->phone
+            ];
+        }
+        
+        $responseJson = $this->httpClient->post(self::BASE_API_URI . '/' . $this->apiVersion . '/' . self::ORDER_CREATE_PATH, $formParams);
         
         return \GuzzleHttp\json_decode($responseJson->getBody());                
     }
