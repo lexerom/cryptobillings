@@ -112,7 +112,9 @@ class Payment
             ];
         }
         
-        $responseJson = $this->httpClient->post(self::BASE_API_URI . '/' . $this->apiVersion . '/' . self::ORDER_CREATE_PATH, $formParams);
+        $responseJson = $this->httpClient->post(self::BASE_API_URI . '/' . $this->apiVersion . '/' . self::ORDER_CREATE_PATH, [
+            'json' => $formParams
+        ]);
         
         return \GuzzleHttp\json_decode($responseJson->getBody());                
     }
