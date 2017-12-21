@@ -83,7 +83,7 @@ class Payment
                     'description' => $item->description,
                     'price' => $item->price,
                     'currency' => $item->currency,
-                    'quanity' => $item->quantity
+                    'quantity' => $item->quantity
                 ];
             }
         }
@@ -93,6 +93,7 @@ class Payment
                 'name' => $shipping->name,
                 'line1' => $shipping->line1,
                 'line2' => $shipping->line2,
+                'city' => $shipping->city,
                 'country_code' => $shipping->countryCode,
                 'postal_code' => $shipping->postalCode,
                 'state' => $shipping->state,
@@ -105,6 +106,7 @@ class Payment
                 'name' => $billing->name,
                 'line1' => $billing->line1,
                 'line2' => $billing->line2,
+                'city' => $billing->city,
                 'country_code' => $billing->countryCode,
                 'postal_code' => $billing->postalCode,
                 'state' => $billing->state,
