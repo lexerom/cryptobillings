@@ -1,5 +1,5 @@
 <?php
-namespace Cryptobillings;
+namespace lexerom\cryptobillings;
 
 use GuzzleHttp\Client as HttpClient;
 
