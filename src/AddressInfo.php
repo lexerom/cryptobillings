@@ -1,5 +1,5 @@
 <?php
-namespace Cryptobillings;
+namespace lexerom\cryptobillings;
 
 class AddressInfo
 {
