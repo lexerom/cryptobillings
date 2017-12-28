@@ -59,7 +59,7 @@ class Payment
      * @param array Array of Item to show on payment page 
      * @return mixed
      */
-    public function createOrder($currency, $amount, $toCryptoCurrency, $description, $successUrl, $cancelUrl, $notifyUrl, $param1 = null, $param2 = null, array $items = [], AddressInfo $shipping = null, AddressInfo $billing = null)            
+    public function createOrder($currency, $amount, $toCryptoCurrency, $description, $successUrl, $cancelUrl, $notifyUrl, $param1 = null, $param2 = null, array $items = [], AddressInfo $shipping = null, AddressInfo $billing = null, ShopInfo $shopInfo = null)            
     {
         $formParams = [
             'api_key' => $this->apiKey,
@@ -111,6 +111,15 @@ class Payment
                 'postal_code' => $billing->postalCode,
                 'state' => $billing->state,
                 'phone' => $billing->phone
+            ];
+        }
+        
+        if ($shopInfo) {
+            $formParams['shop_info'] = [
+                'customer_email' => $shopInfo->customerEmail,
+                'shop_name' => $shopInfo->shopName,
+                'shop_url' => $shopInfo->shopUrl,
+                'shop_email' => $shopInfo->shopEmail
             ];
         }
         
