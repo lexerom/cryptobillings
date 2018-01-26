@@ -5,7 +5,7 @@ use GuzzleHttp\Client as HttpClient;
 
 class Payment
 {
-    const BASE_API_URI = 'https://gateway.cryptobillings.com/api';
+    const BASE_API_URI = 'https://cryptobillings.com/api';
     const ORDER_CREATE_PATH = 'order/create';
     
     const API_VERSION_1 = 'v1';
