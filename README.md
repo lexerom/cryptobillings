@@ -1,3 +1,13 @@
+#cryptobillings
+Cryptobillings is used to receive payments with cryptocurrencies.
+
+Create an account on [Cryptobillings site](https://cryptobillings.com/)
+
+You can install it via composer
+```
+composer require lexerom/cryptobillings
+```
+
 Here is simple example of use
 ```
 require_once 'vendor/autoload.php';
@@ -45,7 +55,7 @@ $shopInfo->shopName = 'Weed shop boom';
 $response = $payment->createOrder('EUR', 3, 'DOPE', 'Test order', 'https://yoursite.com/success-url', 'https://yoursite.com/cancel-url', 'https://yoursite.com/notify-url', 'p1', 'p2', [$item1, $item2], $shipping, $billing);
 ```
 
-$response looks like the following:
+`$response` looks like the following:
 ```
 $response = [
     'result' => [
