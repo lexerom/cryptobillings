@@ -58,6 +58,4 @@ $response = [
 ];
 ```
 
-notify_url - where notifications about status will go
-success_url - user redirected here after successful payment
-cancel_url - user reidrected here when he presses cancel or time has ended
+notify_url - where notifications about status will go, success_url - user redirected here after successful payment, cancel_url - user reidrected here when he presses cancel or time has ended
