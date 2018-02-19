@@ -1,5 +1,5 @@
 # cryptobillings
-Cryptobillings is used to receive payments with cryptocurrencies.
+Accept cryptocurrencies on your site with ease!
 
 Create an account on [Cryptobillings site](https://cryptobillings.com/)
 
