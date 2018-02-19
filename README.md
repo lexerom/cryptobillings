@@ -41,5 +41,23 @@ $shopInfo = new ShopInfo();
 $shopInfo->customerEmail = 'youremail@example.com';
 $shopInfo->shopName = 'Weed shop boom';
 
-$response = $payment->createOrder('EUR', 3, isset($_GET['c']) ? $_GET['c'] : 'DOPE', 'Test order', 'https://yoursite.com/success-url', 'https://yoursite.com/cancel-ur', 'https://yoursite.com/notify.php', 'p1', 'p2', [$item1, $item2], $shipping, $billing);
+$response = $payment->createOrder('EUR', 3, 'DOPE', 'Test order', 'https://yoursite.com/success-url', 'https://yoursite.com/cancel-ur', 'https://yoursite.com/notify.php', 'p1', 'p2', [$item1, $item2], $shipping, $billing);
 ```
+
+$response looks like the following:
+```
+$response = [
+    'result' => [
+        'order_token' => 'ORDER_TOKEN',
+        'payment_status' => 0, //0 - new
+        'redirect_url' => 'REDIRECT_URL where you need to redirect your user to proceed',
+        'amount_out' => 'SOME_AMOUNT_IN_REQUESTED_CRYPTOCURRENCY'                 
+    ],
+    'status' => 200,
+    'error' => ''
+];
+```
+
+notify_url - where notifications about status will go
+success_url - user redirected here after successful payment
+cancel_url - user reidrected here when he presses cancel or time has ended
