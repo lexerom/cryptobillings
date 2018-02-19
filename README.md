@@ -41,7 +41,7 @@ $shopInfo = new ShopInfo();
 $shopInfo->customerEmail = 'youremail@example.com';
 $shopInfo->shopName = 'Weed shop boom';
 
-$response = $payment->createOrder('EUR', 3, 'DOPE', 'Test order', 'https://yoursite.com/success-url', 'https://yoursite.com/cancel-ur', 'https://yoursite.com/notify.php', 'p1', 'p2', [$item1, $item2], $shipping, $billing);
+$response = $payment->createOrder('EUR', 3, 'DOPE', 'Test order', 'https://yoursite.com/success-url', 'https://yoursite.com/cancel-url', 'https://yoursite.com/notify-url', 'p1', 'p2', [$item1, $item2], $shipping, $billing);
 ```
 
 $response looks like the following:
