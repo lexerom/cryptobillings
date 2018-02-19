@@ -36,6 +36,7 @@ $shipping->phone = '+79876543210';
 $shipping->type = 'shipping';
 
 $billing = clone $shipping;
+$billing->type = 'billing';
 
 $shopInfo = new ShopInfo();
 $shopInfo->customerEmail = 'youremail@example.com';
