@@ -1,4 +1,4 @@
-#cryptobillings
+# cryptobillings
 Cryptobillings is used to receive payments with cryptocurrencies.
 
 Create an account on [Cryptobillings site](https://cryptobillings.com/)
